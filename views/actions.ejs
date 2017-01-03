@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <% include partials/head %>
+</head>
+
+<body class="hold-transition skin-black sidebar-mini">
+    <!-- jQuery 2.1.4 -->
+    <script src="/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <div class="wrapper">
+        <% include partials/main-header %>
+            <% include partials/main-sidebar %>
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-wrapper">
+                    <!-- Main content -->
+                    <section class="content">
+                        <!-- First row -->
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <div class="box box-primary" style="height: 240px">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Send SMS</h3>
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <!-- form start -->
+                                    <form class="form-horizontal">
+                                        <div class="box-body" style="height: 140px">
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-phone"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" id="SendSMS_nr" placeholder="Telefoonnr.">
+                                                    </div>
+                                                    <!-- /.input group -->
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+                                                    <textarea class="form-control" id="SendSMS_bericht" rows="3" placeholder="Bericht..."></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.box-body -->
+                                        <div class="box-footer">
+                                            <button type="submit" class="btn btn-default">Clear</button>
+                                            <button type="submit" class="btn btn-primary pull-right" onclick="sendSMS()"><i class="fa fa-send"></i> Send</button>
+                                        </div>
+                                        <!-- /.box-footer -->
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-xs-4">
+                                <div class="box box-warning" style="height: 240px">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Send BROADCAST</h3>
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <!-- form start -->
+                                    <form class="form-horizontal">
+                                        <div class="box-body" style="height: 140px">
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+                                                    <textarea class="form-control" id="sendBroadcast_bericht" rows="5" placeholder="Bericht..."></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.box-body -->
+                                        <div class="box-footer">
+                                            <button type="submit" class="btn btn-default">Clear</button>
+                                            <button type="submit" class="btn btn-warning pull-right" onclick="sendBroadcast()"><i class="fa fa-bullhorn"></i> Send</button>
+                                        </div>
+                                        <!-- /.box-footer -->
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-xs-4">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="box box-danger" style="height: 110px">
+                                            <div class="box-header with-border">
+                                                <h3 class="box-title">BLOCK USER</h3>
+                                            </div>
+                                            <!-- /.box-header -->
+                                            <!-- form start -->
+                                            <form class="form-horizontal">
+                                                <div class="box-body">
+                                                    <div class="form-group">
+                                                        <div class="col-sm-12">
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-phone"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" style="width: 215px" id="blockUser_nr" placeholder="Telefoonnr.">
+                                                                <button type="submit" class="btn btn-default pull-right" onclick="blockUser()"><i class="fa  fa-thumbs-down"></i></button>
+                                                            </div>
+                                                            <!-- /.input group -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="box box-danger" style="height: 110px">
+                                            <div class="box-header with-border">
+                                                <h3 class="box-title">UNBLOCK USER</h3>
+                                            </div>
+                                            <!-- /.box-header -->
+                                            <!-- form start -->
+                                            <form class="form-horizontal">
+                                                <div class="box-body">
+                                                    <div class="form-group">
+                                                        <div class="col-sm-12">
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-phone"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" style="width: 215px" id="unblockUser_nr" placeholder="Telefoonnr.">
+                                                                <button type="submit" class="btn btn-default pull-right" onclick="unblockUser()"><i class="fa  fa-thumbs-up"></i></button>
+                                                            </div>
+                                                            <!-- /.input group -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                        <!-- Second row -->
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="box box-success" style="height: 130px">
+                                            <div class="box-header with-border">
+                                                <h3 class="box-title">ADD ALIAS</h3>
+                                            </div>
+                                            <!-- /.box-header -->
+                                            <!-- form start -->
+                                            <form class="form-horizontal">
+                                                <div class="box-body">
+                                                    <div class="form-group">
+                                                        <div class="col-sm-12">
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-at"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" style="width: 215px" id="addAlias_alias" placeholder="Alias...">
+                                                            </div>
+                                                            <!-- /.input group -->
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" style="width: 215px" id="addAlias_id" placeholder="Id...">
+                                                                <button type="submit" class="btn btn-default pull-right" onclick="addAlias()"><i class="fa fa-check"></i></button>
+                                                            </div>
+                                                            <!-- /.input group -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="box box-success" style="height: 130px">
+                                            <div class="box-header with-border">
+                                                <h3 class="box-title">REMOVE ALIAS</h3>
+                                            </div>
+                                            <!-- /.box-header -->
+                                            <!-- form start -->
+                                            <form class="form-horizontal">
+                                                <div class="box-body">
+                                                    <div class="form-group">
+                                                        <div class="col-sm-12">
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-at"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" style="width: 215px" id="removeAlias_alias" placeholder="Alias...">
+                                                            </div>
+                                                            <!-- /.input group -->
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" style="width: 215px" id="removeAlias_id" placeholder="Id...">
+                                                                <button type="submit" class="btn btn-default pull-right" onclick="removeAlias()"><i class="fa fa-close"></i></button>
+                                                            </div>
+                                                            <!-- /.input group -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-xs-4">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="box box-warning" style="height: 130px">
+                                            <div class="box-header with-border">
+                                                <h3 class="box-title">ADD BLOCKLIST</h3>
+                                            </div>
+                                            <!-- /.box-header -->
+                                            <!-- form start -->
+                                            <form class="form-horizontal">
+                                                <div class="box-body">
+                                                    <div class="form-group">
+                                                        <div class="col-sm-12">
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-sign-out"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" style="width: 215px" id="addBlocklist_from" placeholder="ID From...">
+                                                            </div>
+                                                            <!-- /.input group -->
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-sign-in"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" style="width: 215px" id="addBlocklist_to" placeholder="ID To...">
+                                                                <button type="submit" class="btn btn-default pull-right" onclick="addBlocklist()"><i class="fa  fa-thumbs-down"></i></button>
+                                                            </div>
+                                                            <!-- /.input group -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="box box-warning" style="height: 130px">
+                                            <div class="box-header with-border">
+                                                <h3 class="box-title">REMOVE BLOCKLIST</h3>
+                                            </div>
+                                            <!-- /.box-header -->
+                                            <!-- form start -->
+                                            <form class="form-horizontal">
+                                                <div class="box-body">
+                                                    <div class="form-group">
+                                                        <div class="col-sm-12">
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-sign-out"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" style="width: 215px" id="removeBlocklist_from" placeholder="ID From...">
+                                                            </div>
+                                                            <!-- /.input group -->
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-sign-in"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" style="width: 215px" id="removeBlocklist_to" placeholder="ID To...">
+                                                                <button type="submit" class="btn btn-default pull-right" onclick="removeBlocklist()"><i class="fa  fa-thumbs-up"></i></button>
+                                                            </div>
+                                                            <!-- /.input group -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </section>
+                    <!-- /.content -->
+                </div>
+                <!-- /.content-wrapper -->
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- jQuery 2.1.4 -->
+    <script src="/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <!-- ChartJS 1.0.1 -->
+    <script src="/plugins/chartjs/Chart.min.js"></script>
+    <!-- FastClick -->
+    <script src="/plugins/fastclick/fastclick.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/dist/js/app.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="/dist/js/demo.js"></script>
+    <!-- FLOT CHARTS -->
+    <script src="/plugins/flot/jquery.flot.min.js"></script>
+    <!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+    <script src="/plugins/flot/jquery.flot.resize.min.js"></script>
+    <!-- FLOT PIE PLUGIN - also used to draw donut charts -->
+    <script src="/plugins/flot/jquery.flot.pie.min.js"></script>
+    <!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
+    <script src="/plugins/flot/jquery.flot.categories.min.js"></script>
+
+    <!-- Socket.io -->
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- My scripts -->
+    <script src="/js/actions.js"></script>
+</body>
+
+</html>

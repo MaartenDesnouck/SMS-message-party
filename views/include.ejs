@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <% include partials/head %>
+</head>
+
+<body class="hold-transition skin-black sidebar-mini">
+    <div class="wrapper">
+        <% include partials/main-header %>
+            <% include partials/main-sidebar %>
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-wrapper">
+                    <%if (smsgateway_url == "index") { %>
+                        <iframe src="https://smsgateway.me/admin/messages/index" width="100%" style="min-height: 900px;"></iframe>
+                        <% } %>
+                            <%if (smsgateway_url != "index") { %>
+                                <iframe src="https://smsgateway.me/admin/devices/view/<%= smsgateway_url %>" width="100%" height="570px"></iframe>
+                                <% } %>
+                </div>
+                <!-- /.content-wrapper -->
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- jQuery 2.1.4 -->
+    <script src="/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <!-- ChartJS 1.0.1 -->
+    <script src="/plugins/chartjs/Chart.min.js"></script>
+    <!-- FastClick -->
+    <script src="/plugins/fastclick/fastclick.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/dist/js/app.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="/dist/js/demo.js"></script>
+    <!-- FLOT CHARTS -->
+    <script src="/plugins/flot/jquery.flot.min.js"></script>
+    <!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+    <script src="/plugins/flot/jquery.flot.resize.min.js"></script>
+    <!-- FLOT PIE PLUGIN - also used to draw donut charts -->
+    <script src="/plugins/flot/jquery.flot.pie.min.js"></script>
+    <!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
+    <script src="/plugins/flot/jquery.flot.categories.min.js"></script>
+    <!-- Page script -->
+    <script>
+    </script>
+</body>
+
+</html>

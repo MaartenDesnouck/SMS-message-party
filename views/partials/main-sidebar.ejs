@@ -1,0 +1,43 @@
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- statussen up to date houden
+        <script src="/js/phonestatus.js"></script> -->‡
+        <ul class="sidebar-menu">
+            <li class="header">CONNECTION STATUS</li>
+            <!-- Sidebar smsgateway status -->
+            <% include gatewayStatus %>
+            <!-- Sidebar phone status -->
+            <% GLOBAL.smsgateway_devices.forEach(function(device) { %>
+                <% include phoneStatus %>
+            <% }); %>
+        </ul>
+
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu">
+        <li class="header">MAIN NAVIGATION</li>
+        <li class="<%= sidebar_active_dashboard %>">
+          <a href="/dashboard/">
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
+          </a>
+        </li>
+        <!--<li class="<%= sidebar_active_messages %>">
+          <a href="/messages/">
+            <i class="fa fa-envelope"></i>
+            <span>Messages</span>
+            <span class="pull-right">
+                <span class="label label-success pull-right">6</span>
+                <span class="label label-primary pull-right">4</span>
+            </span>
+          </a>
+      </li>-->
+        <li class="<%= sidebar_active_actions %>">
+          <a href="/actions/">
+            <i class="fa fa-bolt"></i>
+            <span>Actions</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>

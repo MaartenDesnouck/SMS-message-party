@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <% include partials/head %>
+</head>
+
+<body class="hold-transition skin-black sidebar-mini">
+    <div class="wrapper">
+        <% include partials/main-header %>
+            <% include partials/main-sidebar %>
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-wrapper">
+                    <!-- Main content -->
+                    <section class="content">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <% include partials/messages-sidebar %>
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-9">
+                                <div class="box box-primary">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Send SMS</h3>
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <input class="form-control" placeholder="Telefoonnr.">
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea id="compose-textarea" placeholder="Bericht..." class="form-control" style="height: 200px">
+                                            </textarea>
+                                        </div>
+                                    </div>
+                                    <!-- /.box-body -->
+                                    <div class="box-footer">
+                                        <div class="pull-right">
+                                            <button type="submit" class="btn btn-primary"><i class="fa fa-send"></i> Send</button>
+                                        </div>
+                                        <button class="btn btn-default"><i class="fa fa-times"></i> Discard</button>
+                                    </div>
+                                    <!-- /.box-footer -->
+                                </div>
+                                <!-- /. box -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </section>
+                    <!-- /.content -->
+
+                </div>
+                <!-- /.content-wrapper -->
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- jQuery 2.1.4 -->
+    <script src="/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <!-- ChartJS 1.0.1 -->
+    <script src="/plugins/chartjs/Chart.min.js"></script>
+    <!-- FastClick -->
+    <script src="/plugins/fastclick/fastclick.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/dist/js/app.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="/dist/js/demo.js"></script>
+    <!-- FLOT CHARTS -->
+    <script src="/plugins/flot/jquery.flot.min.js"></script>
+    <!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+    <script src="/plugins/flot/jquery.flot.resize.min.js"></script>
+    <!-- FLOT PIE PLUGIN - also used to draw donut charts -->
+    <script src="/plugins/flot/jquery.flot.pie.min.js"></script>
+    <!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
+    <script src="/plugins/flot/jquery.flot.categories.min.js"></script>
+    <!-- Page script -->
+    <script>
+    </script>
+</body>
+
+</html>

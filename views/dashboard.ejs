@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <% include partials/head %>
+</head>
+
+<body class="hold-transition skin-black sidebar-mini">
+    <!-- jQuery 2.1.4 -->
+    <script src="/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <div class="wrapper">
+        <% include partials/main-header %>
+            <% include partials/main-sidebar %>
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-wrapper">
+                    <!-- Main content -->
+                    <section class="content">
+                        <!-- First row -->
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <!-- Donut chart -->
+                                <div class="box box-primary">
+                                    <div class="box-header">
+                                        <i class="fa fa-database"></i>
+                                        <h3 class="box-title">Message Database</h3>
+                                    </div>
+                                    <div class="box-body">
+                                        <table class="table table-bordered" style="height: 250px;">
+                                            <tbody>
+                                                <tr>
+                                                    <td><span class="label bg-gray" id="sms_received">_</span></td>
+                                                    <td>RECEIVED</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="label bg-green" id="sms_handled">_</span></td>
+                                                    <td>HANDLED</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="label bg-gray" id="sms_pending">_</span></td>
+                                                    <td>PENDING</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="label bg-gray" id="sms_queued">_</span></td>
+                                                    <td>QUEUED</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="label bg-yellow" id="sms_sent">_</span></td>
+                                                    <td>SENT</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="label bg-red" id="sms_failed">_</span></td>
+                                                    <td>FAILED</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body-->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                            <div class="col-xs-9">
+                                <!-- interactive chart -->
+                                <div class="box box-primary">
+                                    <div class="box-header with-border">
+                                        <i class="fa fa-area-chart"></i>
+                                        <h3 class="box-title">Messages per 5 minutes</h3>
+                                    </div>
+                                    <div class="box-body">
+                                        <canvas id="messagesChart" height=245px width=720px></canvas>
+                                    </div>
+                                    <!-- /.box-body-->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                        <!-- Second row -->
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <!-- Pie chart -->
+                                <div class="box box-primary">
+                                    <div class="box-header">
+                                        <i class="fa fa-users"></i>
+                                        <h3 class="box-title">Users |
+                                    <span class="label bg-green" id="user_active">_</span>
+                                    <span class="label bg-gray" id="user_stopped">_</span>
+                                    <span class="label bg-red" id="user_blocked">_</span>
+                                <h3>
+                            </div>
+                            <div class="box-body">
+                                <canvas id="pieChart" height=325px></canvas>
+                            </div><!-- /.box-body-->
+                        </div><!-- /.box -->
+                    </div>
+                    <div class="col-xs-9">
+                      <!-- interactive chart -->
+                      <div class="box box-primary">
+                        <div class="box-header with-border">
+                          <i class="fa fa-area-chart"></i>
+                          <h3 class="box-title">Usercount every 5 minutes</h3>
+                                    </div>
+                                    <div class="box-body">
+                                        <canvas id="usersChart" height=245px width=720px></canvas>
+                                    </div>
+                                    <!-- /.box-body-->
+                                </div>
+                                <!-- /.box -->
+
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </section>
+                    <!-- /.content -->
+
+                </div>
+                <!-- /.content-wrapper -->
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- Bootstrap 3.3.5 -->
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <!-- ChartJS 1.0.1 -->
+    <script src="/plugins/chartjs/Chart.min.js"></script>
+    <!-- FastClick -->
+    <script src="/plugins/fastclick/fastclick.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/dist/js/app.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="/dist/js/demo.js"></script>
+    <!-- FLOT CHARTS -->
+    <script src="/plugins/flot/jquery.flot.min.js"></script>
+    <!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+    <script src="/plugins/flot/jquery.flot.resize.min.js"></script>
+    <!-- FLOT PIE PLUGIN - also used to draw donut charts -->
+    <script src="/plugins/flot/jquery.flot.pie.min.js"></script>
+    <!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
+    <script src="/plugins/flot/jquery.flot.categories.min.js"></script>
+
+    <!-- Socket.io -->
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- My scripts -->
+    <script src="/js/dashboard.js"></script>
+</body>
+
+</html>

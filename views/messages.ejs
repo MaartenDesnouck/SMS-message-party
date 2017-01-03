@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <% include partials/head %>
+</head>
+
+<body class="hold-transition skin-black sidebar-mini">
+    <div class="wrapper">
+        <% include partials/main-header %>
+            <% include partials/main-sidebar %>
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-wrapper">
+                    <!-- Main content -->
+                    <section class="content">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <% include partials/messages-sidebar %>
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-9">
+                                <div class="box box-primary">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title"><%= inbox_title %></h3>
+                                        <div class="box-tools pull-right">
+                                            <div class="has-feedback">
+                                                <input type="text" class="form-control input-sm" placeholder="Search Messages">
+                                                <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                            </div>
+                                        </div>
+                                        <!-- /.box-tools -->
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <div class="box-body no-padding">
+                                        <div class="mailbox-controls">
+                                            <!-- Refresh button -->
+                                            <button class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+                                            <div class="pull-right">
+                                                1-50/200
+                                                <div class="btn-group">
+                                                    <button class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
+                                                    <button class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
+                                                </div>
+                                                <!-- /.btn-group -->
+                                            </div>
+                                            <!-- /.pull-right -->
+                                        </div>
+                                        <div class="table-responsive mailbox-messages">
+                                            <table class="table table-hover table-striped">
+                                                <tbody>
+                                                    <% include partials/message %>
+                                                        <% include partials/message %>
+                                                </tbody>
+                                            </table>
+                                            <!-- /.table -->
+                                        </div>
+                                        <!-- /.mail-box-messages -->
+                                    </div>
+                                    <!-- /.box-body -->
+                                    <div class="box-footer no-padding">
+                                        <div class="mailbox-controls">
+                                            <!-- Refresh button -->
+                                            <button class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+                                            <div class="pull-right">
+                                                1-50/200
+                                                <div class="btn-group">
+                                                    <button class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
+                                                    <button class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
+                                                </div>
+                                                <!-- /.btn-group -->
+                                            </div>
+                                            <!-- /.pull-right -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /. box -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </section>
+                    <!-- /.content -->
+                    </section>
+                    <!-- /.content -->
+
+                </div>
+                <!-- /.content-wrapper -->
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- jQuery 2.1.4 -->
+    <script src="/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <!-- ChartJS 1.0.1 -->
+    <script src="/plugins/chartjs/Chart.min.js"></script>
+    <!-- FastClick -->
+    <script src="/plugins/fastclick/fastclick.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/dist/js/app.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="/dist/js/demo.js"></script>
+    <!-- FLOT CHARTS -->
+    <script src="/plugins/flot/jquery.flot.min.js"></script>
+    <!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+    <script src="/plugins/flot/jquery.flot.resize.min.js"></script>
+    <!-- FLOT PIE PLUGIN - also used to draw donut charts -->
+    <script src="/plugins/flot/jquery.flot.pie.min.js"></script>
+    <!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
+    <script src="/plugins/flot/jquery.flot.categories.min.js"></script>
+    <!-- Page script -->
+    <script>
+        $(function() {
+            /*
+             * Flot Interactive Chart
+             * -----------------------
+             */
+
+            var data = [],
+                totalPoints = 101;
+
+            function getData() {
+
+                if (data.length > 0)
+                    data = data.slice(1);
+
+                // Push data
+                while (data.length < totalPoints) {
+                    y = 30;
+                    data.push(y);
+                }
+
+                // Zip the generated y values with the x values
+                var res = [];
+                for (var i = 0; i < data.length; ++i) {
+                    res.push([i, data[i]]);
+                }
+
+                return res;
+            }
+
+            var interactive_plot = $.plot("#interactive", [getData()], {
+                grid: {
+                    borderColor: "#f3f3f3",
+                    borderWidth: 1,
+                    tickColor: "#f3f3f3"
+                },
+                series: {
+                    shadowSize: 2, // Drawing is faster without shadows
+                    color: "#3c8dbc"
+                },
+                lines: {
+                    fill: true, //Converts the line chart to area chart
+                    color: "#3c8dbc"
+                },
+                yaxis: {
+                    min: 0,
+                    max: 100,
+                    show: true
+                },
+                xaxis: {
+                    min: 0,
+                    max: 100,
+                    show: true
+                }
+            });
+
+            var updateInterval = 500; //Fetch data ever x milliseconds
+            var realtime = "on"; //If == to on then fetch data every x seconds. else stop fetching
+            function update() {
+
+                interactive_plot.setData([getData()]);
+
+                // Since the axes don't change, we don't need to call plot.setupGrid()
+                interactive_plot.draw();
+                if (realtime === "on")
+                    setTimeout(update, updateInterval);
+            }
+
+            //INITIALIZE REALTIME DATA FETCHING
+            if (realtime === "on") {
+                update();
+            }
+            /*
+             * END INTERACTIVE CHART
+             */
+
+            //-------------
+            //- PIE CHART -
+            //-------------
+            // Get context with jQuery - using jQuery's .get() method.
+            var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
+            var pieChart = new Chart(pieChartCanvas);
+            var PieData = [{
+                value: 100,
+                color: "#238523",
+                highlight: "#238523",
+                label: "Active"
+            }, {
+                value: 30,
+                color: "#8f8f8f",
+                highlight: "#8f8f8f",
+                label: "Stopped"
+            }, {
+                value: 4,
+                color: "#b01919",
+                highlight: "#b01919",
+                label: "Blocked"
+            }];
+            var pieOptions = {
+                //Boolean - Whether we should show a stroke on each segment
+                segmentShowStroke: true,
+                //String - The colour of each segment stroke
+                segmentStrokeColor: "#fff",
+                //Number - The width of each segment stroke
+                segmentStrokeWidth: 1,
+                //Number - The percentage of the chart that we cut out of the middle
+                percentageInnerCutout: 60, // This is 0 for Pie charts
+                //Number - Amount of animation steps
+                animationSteps: 100,
+                //String - Animation easing effect
+                animationEasing: "easeOutBounce",
+                //Boolean - Whether we animate the rotation of the Doughnut
+                animateRotate: true,
+                //Boolean - Whether we animate scaling the Doughnut from the centre
+                animateScale: false,
+                //Boolean - whether to make the chart responsive to window resizing
+                responsive: true,
+                //Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+                maintainAspectRatio: true,
+                //String - A legend template
+            };
+            //Create pie or douhnut chart
+            // You can switch between pie and douhnut using the method below.
+            pieChart.Doughnut(PieData, pieOptions);
+        });
+
+        /*
+         * Custom Label formatter
+         * ----------------------
+         */
+        function labelFormatter(label, series) {
+            return '<div style="font-size:13px; text-align:center; padding:2px; color: #fff; font-weight: 600;">' + label + "<br>" + Math.round(series.percent) + "%</div>";
+        }
+    </script>
+</body>
+
+</html>

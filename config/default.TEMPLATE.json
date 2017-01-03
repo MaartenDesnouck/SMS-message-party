@@ -1,0 +1,13 @@
+{
+    "live": true,
+    "phonenumber": "",
+    "smsgateway": {
+        "username": "",
+        "password": "",
+        "devices": [{"id":,
+                    "name":"",
+                    "seconds":-1,
+                    "battery":"0"}
+        ]
+    }
+}
