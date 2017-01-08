@@ -4,7 +4,7 @@
     "smsgateway": {
         "username": "",
         "password": "",
-        "devices": [{"id":,
+        "devices": [{"id":-1,
                     "name":"",
                     "seconds":-1,
                     "battery":"0"}

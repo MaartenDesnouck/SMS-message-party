@@ -9,10 +9,10 @@ var Q = require('q');
  * @param {String} email    Account of smsgateway.me
  * @param {String} password Password of smsgateway.me
  */
-var SmsGateway = function(email,password){
-	this.email = email;
-	this.password = password;
-	this._baseUrl = 'http://smsgateway.me/api/v3';
+var SmsGateway = function(email, password) {
+    this.email = email;
+    this.password = password;
+    this._baseUrl = 'http://smsgateway.me/api/v3';
 };
 
 /**
@@ -23,37 +23,37 @@ var SmsGateway = function(email,password){
  * @param  {Object} data   Data object to send
  * @return {Promise}
  */
-SmsGateway.prototype._makeRequest = function(method, path, data){
-	var dfd = Q.defer();
-	if(!data){
-		data = {};
-	}
-	data.email = this.email;
-	data.password = this.password;
-	var options = {};
-	method = method.toLowerCase();
-	if(method === 'get'){
-		options.query = data;
-	}else{
-		options.data = data;
-	}
-	restler[method](this._baseUrl + path,options).on('complete',function(data,response){
-		if(data instanceof Error){
-			dfd.reject(data.message);
-		}else if(!data.success){
-			var errMsg;
-			if(typeof data === 'string'){
-				errMsg = data;
-			}else{
-				errMsg = JSON.stringify(data.errors,null,2);
-			}
-			dfd.reject(': Server returned ERROR on '+path);
-		}else{
-			dfd.resolve(data.result);
-		}
-	});
+SmsGateway.prototype._makeRequest = function(method, path, data) {
+    var dfd = Q.defer();
+    if (!data) {
+        data = {};
+    }
+    data.email = this.email;
+    data.password = this.password;
+    var options = {};
+    method = method.toLowerCase();
+    if (method === 'get') {
+        options.query = data;
+    } else {
+        options.data = data;
+    }
+    restler[method](this._baseUrl + path, options).on('complete', function(data, response) {
+        if (data instanceof Error) {
+            dfd.reject(data.message);
+        } else if (!data.success) {
+            var errMsg;
+            if (typeof data === 'string') {
+                errMsg = data;
+            } else {
+                errMsg = JSON.stringify(data.errors, null, 2);
+            }
+            dfd.reject(': Server returned ERROR on ' + path);
+        } else {
+            dfd.resolve(data.result);
+        }
+    });
 
-	return dfd.promise;
+    return dfd.promise;
 };
 
 /**
@@ -62,8 +62,10 @@ SmsGateway.prototype._makeRequest = function(method, path, data){
  * @param  {Number} page page number(500 results per page)
  * @return {Promise}
  */
-SmsGateway.prototype.getDevices = function(page){
-	return this._makeRequest('GET', '/devices', {page:page});
+SmsGateway.prototype.getDevices = function(page) {
+    return this._makeRequest('GET', '/devices', {
+        page: page
+    });
 };
 
 /**
@@ -72,8 +74,8 @@ SmsGateway.prototype.getDevices = function(page){
  * @param  {Number} id ID of the device
  * @return {Promise}
  */
-SmsGateway.prototype.getDevice = function(id){
-	return this._makeRequest('GET', '/devices/view/' + id);
+SmsGateway.prototype.getDevice = function(id) {
+    return this._makeRequest('GET', '/devices/view/' + id);
 };
 
 /**
@@ -82,8 +84,10 @@ SmsGateway.prototype.getDevice = function(id){
  * @param  {Number} page page number(500 results per page)
  * @return {Promise}
  */
-SmsGateway.prototype.getMessages = function(page){
-	return this._makeRequest('GET', '/messages', {page:page});
+SmsGateway.prototype.getMessages = function(page) {
+    return this._makeRequest('GET', '/messages', {
+        page: page
+    });
 };
 
 /**
@@ -92,8 +96,8 @@ SmsGateway.prototype.getMessages = function(page){
  * @param  {Number} id ID of the message
  * @return {Promise}
  */
-SmsGateway.prototype.getMessage = function(id){
-	return this._makeRequest('GET', '/messages/view/' + id);
+SmsGateway.prototype.getMessage = function(id) {
+    return this._makeRequest('GET', '/messages/view/' + id);
 };
 
 /**
@@ -107,20 +111,20 @@ SmsGateway.prototype.getMessage = function(id){
  * @param {Number} options.expires_at Time(stamp) to give up trying to send the message
  * @return {Promise}
  */
-SmsGateway.prototype.send = function(number,message,deviceId,options){
-	var data = {
-		device:deviceId,
-		number:number,
-		message:message
-	};
-	if(options && options.send_at){
-		data.send_at = options.send_at;
-	}
-	if(options && options.expires_at){
-		data.send_at = options.expires_at;
-	}
+SmsGateway.prototype.send = function(number, message, deviceId, options) {
+    var data = {
+        device: deviceId,
+        number: number,
+        message: message
+    };
+    if (options && options.send_at) {
+        data.send_at = options.send_at;
+    }
+    if (options && options.expires_at) {
+        data.send_at = options.expires_at;
+    }
 
-	return this._makeRequest('POST', '/messages/send', data);
+    return this._makeRequest('POST', '/messages/send', data);
 };
 
 
@@ -166,20 +170,20 @@ SmsGateway.prototype.sendMessageToManyNumbers = SmsGateway.prototype.send;
  * @param {Number} options.expires_at Time(stamp) to give up trying to send the message
  * @return {Promise}
  */
-SmsGateway.prototype.sendMessageToContact = function(contact,message,deviceId,options){
-	var data = {
-		device:deviceId,
-		contact:contact,
-		message:message
-	};
-	if(options && options.send_at){
-		data.send_at = options.send_at;
-	}
-	if(options && options.expires_at){
-		data.send_at = options.expires_at;
-	}
+SmsGateway.prototype.sendMessageToContact = function(contact, message, deviceId, options) {
+    var data = {
+        device: deviceId,
+        contact: contact,
+        message: message
+    };
+    if (options && options.send_at) {
+        data.send_at = options.send_at;
+    }
+    if (options && options.expires_at) {
+        data.send_at = options.expires_at;
+    }
 
-	return this._makeRequest('POST', '/messages/send', data);
+    return this._makeRequest('POST', '/messages/send', data);
 };
 
 /**
@@ -203,8 +207,10 @@ SmsGateway.prototype.sendMessageToManyContacts = SmsGateway.prototype.sendMessag
  * @param {Array} data All messages array
  * @return {Promise}
  */
-SmsGateway.prototype.sendManyMessages = function(data){
-	return this._makeRequest('POST', '/contacts/send', {data:data});
+SmsGateway.prototype.sendManyMessages = function(data) {
+    return this._makeRequest('POST', '/contacts/send', {
+        data: data
+    });
 };
 
 /**
@@ -214,8 +220,11 @@ SmsGateway.prototype.sendManyMessages = function(data){
  * @param  {Number} number Number of contact
  * @return {Promise}
  */
-SmsGateway.prototype.createContact = function(name,number){
-	return this._makeRequest('POST', '/contacts/create', {name:name,number:number});
+SmsGateway.prototype.createContact = function(name, number) {
+    return this._makeRequest('POST', '/contacts/create', {
+        name: name,
+        number: number
+    });
 };
 
 /**
@@ -224,8 +233,10 @@ SmsGateway.prototype.createContact = function(name,number){
  * @param  {Number} page page number(500 results per page)
  * @return {Promise}
  */
-SmsGateway.prototype.getContacts = function(page){
-	return this._makeRequest('GET', '/contacts', {page:page});
+SmsGateway.prototype.getContacts = function(page) {
+    return this._makeRequest('GET', '/contacts', {
+        page: page
+    });
 };
 
 /**
@@ -234,8 +245,8 @@ SmsGateway.prototype.getContacts = function(page){
  * @param  {Number} id ID of the contact
  * @return {Promise}
  */
-SmsGateway.prototype.getContact = function(id){
-	return this._makeRequest('GET', '/contacts/view/' + id);
+SmsGateway.prototype.getContact = function(id) {
+    return this._makeRequest('GET', '/contacts/view/' + id);
 };
 
 

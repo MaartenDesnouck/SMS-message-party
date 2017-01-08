@@ -7,21 +7,21 @@
             <li class="header">CONNECTION STATUS</li>
             <!-- Sidebar smsgateway status -->
             <% include gatewayStatus %>
-            <!-- Sidebar phone status -->
-            <% GLOBAL.smsgateway_devices.forEach(function(device) { %>
-                <% include phoneStatus %>
-            <% }); %>
+                <!-- Sidebar phone status -->
+                <% GLOBAL.smsgateway_devices.forEach(function(device) { %>
+                    <% include phoneStatus %>
+                        <% }); %>
         </ul>
 
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu">
-        <li class="header">MAIN NAVIGATION</li>
-        <li class="<%= sidebar_active_dashboard %>">
-          <a href="/dashboard/">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
-          </a>
-        </li>
-        <!--<li class="<%= sidebar_active_messages %>">
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+            <li class="header">MAIN NAVIGATION</li>
+            <li class="<%= sidebar_active_dashboard %>">
+                <a href="/dashboard/">
+                    <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
+                </a>
+            </li>
+            <!--<li class="<%= sidebar_active_messages %>">
           <a href="/messages/">
             <i class="fa fa-envelope"></i>
             <span>Messages</span>
@@ -31,13 +31,13 @@
             </span>
           </a>
       </li>-->
-        <li class="<%= sidebar_active_actions %>">
-          <a href="/actions/">
-            <i class="fa fa-bolt"></i>
-            <span>Actions</span>
-          </a>
-        </li>
-      </ul>
+            <li class="<%= sidebar_active_actions %>">
+                <a href="/actions/">
+                    <i class="fa fa-bolt"></i>
+                    <span>Actions</span>
+                </a>
+            </li>
+        </ul>
     </section>
     <!-- /.sidebar -->
 </aside>
