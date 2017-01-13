@@ -1,5 +1,5 @@
 # SMSmessageParty
-Een Node.js applicatie om een messageparty via sms mogelijk te maken met smsGateway.me   
+A Node.js application to host a messageparty via sms using smsGateway.me
 
-Begin met: `npm install`  
-App runnen: `npm start`
+Install: `npm install`  
+Start app: `npm start`
